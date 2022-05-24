@@ -7,4 +7,11 @@ router.get('/', async (req, res) => {
     res.json(await controller.getSales());
 });
 
+router.get('/:id', async (req, res) => {
+    console.log("PASO POR ACA")
+    res.json(await controller.getSalesPorId(req.params.id));
+    console.log("PASO POR ACA ABAJO")
+
+});
+
 module.exports = router;
