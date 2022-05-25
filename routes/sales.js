@@ -7,11 +7,16 @@ router.get('/', async (req, res) => {
     res.json(await controller.getSales());
 });
 
-router.get('/:id', async (req, res) => {
-    console.log("PASO POR ACA")
-    res.json(await controller.getSalesPorId(req.params.id));
-    console.log("PASO POR ACA ABAJO")
+//CUIDADO SI TENGO DOS GET DONDE LE ENVIO UN PARAMETRO POR POSTMAN, 
+//PORQUE POR DEFECTO SIEMPRE ME TOMA EL PRIMERO POR ESO LE AGREGUE
+//metodoCompra/:metodoCompra PARA DIFERENCIARLOS
 
+router.get('/:id', async (req, res) => {
+    res.json(await controller.getSalesPorId(req.params.id));
+});
+
+router.get('/metodoCompra/:metodoCompra', async (req, res) => {
+    res.json(await controller.getVentas(req.params.metodoCompra));
 });
 
 module.exports = router;

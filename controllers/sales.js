@@ -8,4 +8,8 @@ async function getSalesPorId(id){
     return sales.getSalesId(id);
 }
 
-module.exports = {getSales, getSalesPorId};
+async function getVentas(metodoCompra){    
+    return sales.getVentasFiltradas(metodoCompra);
+}
+
+module.exports = {getSales, getSalesPorId, getVentas};

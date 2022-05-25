@@ -1,7 +1,8 @@
+const { json } = require('express/lib/response');
 const conn = require('./conn');
 const DATABASE = 'sample_supplies';
 const SALES = 'sales';
-const objectId = require('mongodb').ObjectId;
+const objectId = require('mongodb').objectId;
 
 async function getAllSales(){
     const connectiondb = await conn.getConnection();
@@ -24,4 +25,15 @@ async function getSalesId(id){
     return sale;
 }
 
-module.exports = {getAllSales, getSalesId};
+async function getVentasFiltradas(metodoCompra){
+    const connectiondb = await conn.getConnection();
+    const sales = await connectiondb
+                .db(DATABASE)
+                .collection(SALES)
+                .find()
+                .toArray();
+    return sales.filter(sale => sale.purchaseMethod === metodoCompra);
+
+}
+
+module.exports = {getAllSales, getSalesId, getVentasFiltradas};
