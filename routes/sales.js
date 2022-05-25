@@ -15,8 +15,12 @@ router.get('/:id', async (req, res) => {
     res.json(await controller.getSalesPorId(req.params.id));
 });
 
-router.get('/metodoCompra/:metodoCompra', async (req, res) => {
-    res.json(await controller.getVentas(req.params.metodoCompra));
+router.get('/getByPurchaseMethod/:metodoCompra', async (req, res) => {
+    res.json(await controller.getByPurchaseMethod(req.params.metodoCompra));
+});
+
+router.get('/getByEmail/:email', async (req, res) => {
+    res.json(await controller.getByEmail(req.params.email));
 });
 
 module.exports = router;

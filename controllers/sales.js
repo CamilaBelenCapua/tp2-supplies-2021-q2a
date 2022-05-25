@@ -8,8 +8,12 @@ async function getSalesPorId(id){
     return sales.getSalesId(id);
 }
 
-async function getVentas(metodoCompra){    
+async function getByPurchaseMethod(metodoCompra){    
     return sales.getVentasFiltradas(metodoCompra);
 }
 
-module.exports = {getSales, getSalesPorId, getVentas};
+async function getByEmail(email){    
+    return sales.getVentasByEmail(email);
+}
+
+module.exports = {getSales, getSalesPorId, getByPurchaseMethod, getByEmail};
