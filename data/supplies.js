@@ -44,5 +44,24 @@ async function getVentasByEmail(email){
                 .toArray();
     return sales.filter(sale => sale.customer.email === email);
 }
+async function getInsatisfaccion(){
+    const insatisfaccion = 3;
+    const connectiondb = await conn.getConnection();
+    const sales = await connectiondb
+                .db(DATABASE)
+                .collection(SALES)
+                .find()
+                .toArray();
+   return sales.filter(sale => sale.customer.satisfaction < insatisfaccion)
+                .map(sale => {
+                    return {
+                        gender: sale.customer.gender,
+                        age: sale.customer.age,
+                        email: sale.customer.email,
+                        satisfaction: sale.customer.satisfaction
+                    } 
+                }) 
+}
 
-module.exports = {getAllSales, getSalesId, getVentasFiltradas, getVentasByEmail};
+
+module.exports = {getAllSales, getSalesId, getVentasFiltradas, getVentasByEmail, getInsatisfaccion};

@@ -37,11 +37,12 @@ Si ya terminaste o son las 10:00 asegurate de seguir los siguientes pasos para l
 3. Realizar un pull request a mi repositorio
 
 
-
-
 ## Listado de endpoint
 - /api/sales
 - /api/sales/id
+- /api/sales/getByPurchaseMethod/:metodoCompra
+- /api/sales/getByEmail/:email
+- /api/sales/getByInsatisfaccion
 
 
 

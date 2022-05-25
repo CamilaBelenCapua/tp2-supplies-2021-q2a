@@ -16,4 +16,8 @@ async function getByEmail(email){
     return sales.getVentasByEmail(email);
 }
 
-module.exports = {getSales, getSalesPorId, getByPurchaseMethod, getByEmail};
+async function getByInsatisfaccion(){    
+    return sales.getInsatisfaccion();
+}
+
+module.exports = {getSales, getSalesPorId, getByPurchaseMethod, getByEmail, getByInsatisfaccion};
