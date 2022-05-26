@@ -72,7 +72,7 @@ async function getImporteByLocalizacion(location){
                 .toArray();
     return sales.reduce((importeAcumulado, sale)=> 
     importeAcumulado + sale.items.reduce((sumPrice,item) =>  
-    sumPrice + (parseFloat(item.price) * item.quantity),0),0);
+    sumPrice + (parseFloat(item.price) * item.quantity),0), 0);
 }
 
 //sales.reduce((importeAcumulado, sale)=>importeAcumulado + parseFloat(sale.items.price),0);
