@@ -2,7 +2,7 @@ const { json } = require('express/lib/response');
 const conn = require('./conn');
 const DATABASE = 'sample_supplies';
 const SALES = 'sales';
-const objectId = require('mongodb').objectId;
+const objectId = require('mongodb').ObjectId;
 
 async function getAllSales(){
     const connectiondb = await conn.getConnection();
@@ -21,7 +21,7 @@ async function getSalesId(id){
                 .db(DATABASE)
                 .collection(SALES)
                 .find({_id: new objectId(id)})
-                .toArray();
+                .toArray();                 
     return sale;
 }
 
@@ -72,7 +72,7 @@ async function getImporteByLocalizacion(location){
                 .toArray();
     return sales.reduce((importeAcumulado, sale)=> 
     importeAcumulado + sale.items.reduce((sumPrice,item) =>  
-    sumPrice + parseFloat(item.price),0),0);
+    sumPrice + (parseFloat(item.price) * item.quantity),0),0);
 }
 
 //sales.reduce((importeAcumulado, sale)=>importeAcumulado + parseFloat(sale.items.price),0);
