@@ -4,7 +4,11 @@ const controller = require('../controllers/sales');
 
 router.get('/', async (req, res) => {
     console.log("check");
-    res.json(await controller.getSales());
+    try{
+        res.json(await controller.getSales());
+    }catch(err){
+        res.sendStatus(400).json(err)
+    }
 });
 
 //CUIDADO SI TENGO DOS GET DONDE LE ENVIO UN PARAMETRO POR POSTMAN, 
@@ -12,20 +16,45 @@ router.get('/', async (req, res) => {
 //getByPurchaseMethod/:metodoCompra PARA DIFERENCIARLOS
 
 router.get('/getByInsatisfaccion', async (req, res) => {
-    res.json(await controller.getByInsatisfaccion());
+    try{
+        res.json(await controller.getByInsatisfaccion());
+    }catch(err){
+        res.sendStatus(400).json(err)
+    }
 });
 
 router.get('/:id', async (req, res) => {
-    res.json(await controller.getSalesPorId(req.params.id));
+    try{
+        res.json(await controller.getSalesPorId(req.params.id));
+    }catch(err){
+        res.sendStatus(400).json(err)
+    }
 });
 
 router.get('/getByPurchaseMethod/:metodoCompra', async (req, res) => {
-    res.json(await controller.getByPurchaseMethod(req.params.metodoCompra));
+    try{
+        res.json(await controller.getByPurchaseMethod(req.params.metodoCompra));
+    }catch(err){
+        res.sendStatus(400).json(err)
+    }
 });
 
 router.get('/getByEmail/:email', async (req, res) => {
-    res.json(await controller.getByEmail(req.params.email));
+    try{
+        res.json(await controller.getByEmail(req.params.email));
+    }catch(err){
+        res.sendStatus(400).json(err)
+    }
 });
+
+router.get('/importeTotalByLocalizacion/:location', async (req, res) => {
+    try{
+        res.json(await controller.getImporteTotalByLocalizacion(req.params.location));
+    }catch(err){
+        res.sendStatus(400).json(err)
+    }
+});
+
 
 
 

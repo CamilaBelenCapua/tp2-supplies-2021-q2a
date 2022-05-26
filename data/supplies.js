@@ -63,5 +63,17 @@ async function getInsatisfaccion(){
                 }) 
 }
 
+async function getImporteByLocalizacion(location){
+    const connectiondb = await conn.getConnection();
+    const sales = await connectiondb
+                .db(DATABASE)
+                .collection(SALES)
+                .find({storeLocation: location})
+                .toArray();
+    return sales.reduce((importeAcumulado, sale)=> 
+    importeAcumulado + sale.items.reduce((sumPrice,item) =>  
+    sumPrice + parseFloat(item.price),0),0);
+}
 
-module.exports = {getAllSales, getSalesId, getVentasFiltradas, getVentasByEmail, getInsatisfaccion};
+//sales.reduce((importeAcumulado, sale)=>importeAcumulado + parseFloat(sale.items.price),0);
+module.exports = {getAllSales, getSalesId, getVentasFiltradas, getVentasByEmail, getInsatisfaccion, getImporteByLocalizacion};

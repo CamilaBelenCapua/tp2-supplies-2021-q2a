@@ -20,4 +20,10 @@ async function getByInsatisfaccion(){
     return sales.getInsatisfaccion();
 }
 
-module.exports = {getSales, getSalesPorId, getByPurchaseMethod, getByEmail, getByInsatisfaccion};
+async function getImporteTotalByLocalizacion(location){    
+    return sales.getImporteByLocalizacion(location);
+}
+
+
+
+module.exports = {getSales, getSalesPorId, getByPurchaseMethod, getByEmail, getByInsatisfaccion, getImporteTotalByLocalizacion};
